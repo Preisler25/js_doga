@@ -4,21 +4,10 @@ let result = document.querySelector('#result');
 let button = document.querySelector('#btn');
 let button2 = document.querySelector('#btn2');
 
-const reset = () => {
-    document.body.style.backgroundColor = 'white';
-    result.value = '';
-    result.style.backgroundColor = 'white';
-    feedback.innerHTML = '';
-    button2.removeEventListener('click', () => { });
-    button2.style.display = 'none';
-    button.style.display = 'block';
-    main();
-}
+let sum;
+let trys_left = 3;
 
-const main = () => {
-    button2.style.display = 'none';
-    let trys_left = 3;
-
+const gen_new = () => {
     const helper = (a, b) => {
         if (a >= b) {
             return NaN;
@@ -31,9 +20,27 @@ const main = () => {
     let num2 = helper(100, 200);
     let sum = num1 + num2;
     display1.innerHTML = `${num1} + ${num2} = `;
+    return sum;
+}
 
 
+const reset = () => {
+    document.body.style.backgroundColor = 'white';
+    result.value = '';
+    result.style.backgroundColor = 'white';
+    feedback.innerHTML = '';
+    button2.removeEventListener('click', () => { });
+    button2.style.display = 'none';
+    button.style.display = 'block';
+    trys_left = 3;
 
+    sum = gen_new();
+}
+
+const main = () => {
+    button2.style.display = 'none';
+
+    sum = gen_new();
 
     button.addEventListener('click', () => {
         let input = parseInt(result.value);
@@ -49,6 +56,7 @@ const main = () => {
             trys_left--;
             if (trys_left > 0) {
                 feedback.innerHTML = `Hibás! Még ${trys_left} próbálkozásod van.`;
+                document.body.style.backgroundColor = 'white';
                 result.style.backgroundColor = 'yellow';
             } else {
                 feedback.innerHTML = `Hibás! A helyes eredmény: ${sum}`;

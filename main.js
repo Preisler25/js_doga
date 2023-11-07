@@ -23,11 +23,26 @@ const gen_new = () => {
     return sum;
 }
 
+const changeBgColor = (color) => {
+    document.body.classList.remove('bg-slate-700');
+    document.body.classList.remove('bg-green-700');
+    document.body.classList.remove('bg-red-700');
+    document.body.classList.add(color);
+}
+
+const changeInputColor = (color, color2) => {
+    result.classList.remove('bg-gray-50');
+    result.classList.remove('dark:bg-gray-700');
+    result.classList.remove('bg-yellow-200');
+    result.classList.remove('dark:bg-yellow-400');
+    result.classList.add(color);
+    result.classList.add(color2);
+}
 
 const reset = () => {
-    document.body.style.backgroundColor = 'white';
+    changeBgColor('bg-slate-700');
     result.value = '';
-    result.style.backgroundColor = 'white';
+    changeInputColor('bg-gray-50', 'dark:bg-gray-700');
     feedback.innerHTML = '';
     button2.removeEventListener('click', () => { });
     button2.style.display = 'none';
@@ -46,8 +61,8 @@ const main = () => {
         let input = parseInt(result.value);
         if (input == sum) {
             feedback.innerHTML = 'Helyes!';
-            document.body.style.backgroundColor = 'green';
-            result.style.backgroundColor = 'green';
+            changeBgColor('bg-green-700');
+            changeInputColor('bg-gray-50', 'dark:bg-gray-700')
             button2.style.display = 'block';
             button.style.display = 'none';
             button2.addEventListener('click', () => {reset();});
@@ -56,12 +71,12 @@ const main = () => {
             trys_left--;
             if (trys_left > 0) {
                 feedback.innerHTML = `Hibás! Még ${trys_left} próbálkozásod van.`;
-                document.body.style.backgroundColor = 'white';
-                result.style.backgroundColor = 'yellow';
+                changeBgColor('bg-slate-700');
+                changeInputColor('bg-yellow-200', 'dark:bg-yellow-400');
             } else {
                 feedback.innerHTML = `Hibás! A helyes eredmény: ${sum}`;
-                document.body.style.backgroundColor = 'red';
-                result.style.backgroundColor = 'red';
+                changeBgColor('bg-red-700');
+                changeInputColor('bg-gray-50', 'dark:bg-gray-700');
                 button2.style.display = 'block';
                 button.style.display = 'none';
                 button2.addEventListener('click', () => {reset();});

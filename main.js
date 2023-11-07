@@ -3,9 +3,11 @@ let feedback = document.querySelector('#feedback');
 let result = document.querySelector('#result');
 let button = document.querySelector('#btn');
 let button2 = document.querySelector('#btn2');
+let helpper = document.querySelector('#help');
 
 let sum;
 let trys_left = 3;
+let help = '';
 
 const gen_new = () => {
     const helper = (a, b) => {
@@ -19,6 +21,8 @@ const gen_new = () => {
     let num1 = helper(100, 200);
     let num2 = helper(100, 200);
     let sum = num1 + num2;
+    help = `https://www.google.com/search?q=${num1}+%2B+${num2}`;
+    helpper.setAttribute('href', help);
     display1.innerHTML = `${num1} + ${num2} = `;
     return sum;
 }

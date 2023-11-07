@@ -39,11 +39,15 @@ const changeInputColor = (color, color2) => {
     result.classList.add(color2);
 }
 
+const feedBack = (text) => {
+    feedback.innerHTML = text;
+}
+
 const reset = () => {
     changeBgColor('bg-slate-700');
     result.value = '';
     changeInputColor('bg-gray-50', 'dark:bg-gray-700');
-    feedback.innerHTML = '';
+    feedBack('');
     button2.removeEventListener('click', () => { });
     button2.style.display = 'none';
     button.style.display = 'block';
@@ -60,7 +64,7 @@ const main = () => {
     button.addEventListener('click', () => {
         let input = parseInt(result.value);
         if (input == sum) {
-            feedback.innerHTML = 'Helyes!';
+            feedBack('Helyes!');
             changeBgColor('bg-green-700');
             changeInputColor('bg-gray-50', 'dark:bg-gray-700')
             button2.style.display = 'block';
@@ -70,11 +74,11 @@ const main = () => {
         } else {
             trys_left--;
             if (trys_left > 0) {
-                feedback.innerHTML = `Hibás! Még ${trys_left} próbálkozásod van.`;
+                feedBack(`Hibás! Még ${trys_left} próbálkozásod van.`);
                 changeBgColor('bg-slate-700');
                 changeInputColor('bg-yellow-200', 'dark:bg-yellow-400');
             } else {
-                feedback.innerHTML = `Hibás! A helyes eredmény: ${sum}`;
+                feedBack(`Hibás! A helyes eredmény: ${sum}`);
                 changeBgColor('bg-red-700');
                 changeInputColor('bg-gray-50', 'dark:bg-gray-700');
                 button2.style.display = 'block';
